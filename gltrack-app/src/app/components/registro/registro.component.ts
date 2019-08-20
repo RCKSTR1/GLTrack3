@@ -12,20 +12,11 @@ export class RegistroComponent implements OnInit {
   registros = [] as MedicionGlucosa[];
   nuevoRegistro = {} as MedicionGlucosa;
 
-  displayedColumns: string[] = ['fecha', 'nivel', 'comida', 'antesDespues', 'actions'];
-  dataSource: MatTableDataSource<MedicionGlucosa>;
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-
   constructor(private mediciones: MedicionesService) {
   }
 
   ngOnInit() {
     this.registros = this.mediciones.GetAll();
-    this.dataSource = new MatTableDataSource(this.registros);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   Guardar() {
@@ -33,14 +24,12 @@ export class RegistroComponent implements OnInit {
       this.mediciones.Create(this.nuevoRegistro);
       this.LimpiarForma();
       this.registros = this.mediciones.GetAll();
-      this.dataSource.data = this.registros;
     }
   }
 
   Eliminar(id: string) {
     this.mediciones.Delete(id);
     this.registros = this.mediciones.GetAll();
-    this.dataSource.data = this.registros;
   }
 
   LimpiarForma() {
@@ -53,13 +42,5 @@ export class RegistroComponent implements OnInit {
       || this.nuevoRegistro.AntesDespues === undefined
       || this.nuevoRegistro.Comida === undefined
       || this.nuevoRegistro.Fecha === undefined;
-  }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 }

@@ -10,13 +10,15 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { MaterialModule } from './modules/material/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { TablaRegistrosComponent } from './components/tabla-registros/tabla-registros.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     DashboardComponent,
-    RegistroComponent
+    RegistroComponent,
+    TablaRegistrosComponent
   ],
   imports: [
     BrowserModule,
