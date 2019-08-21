@@ -34,8 +34,8 @@
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="GetDisplayerColumns()"></tr>
-  <tr mat-row *matRowDef="let row; columns: GetDisplayerColumns();">
+  <tr mat-header-row *matHeaderRowDef="GetDisplayedColumns()"></tr>
+  <tr mat-row *matRowDef="let row; columns: GetDisplayedColumns();">
   </tr>
 </table>
 

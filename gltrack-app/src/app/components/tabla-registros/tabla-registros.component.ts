@@ -13,10 +13,7 @@ export class TablaRegistrosComponent implements OnInit {
   @Input()
   set registros(value: MedicionGlucosa[]) {
     this._registros = value;
-
-    if (this.dataSource !== undefined) {
-      this.dataSource.data = this._registros;
-    }
+    this.dataSource.data = this._registros;
   }
 
   @Input() permitirEliminar = true;
@@ -28,12 +25,13 @@ export class TablaRegistrosComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
     this.dataSource = new MatTableDataSource(this._registros);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  ngOnInit() {
   }
 
   applyFilter(filterValue: string) {
@@ -48,7 +46,7 @@ export class TablaRegistrosComponent implements OnInit {
     this.itemDeleted.emit(id);
   }
 
-  GetDisplayerColumns() {
+  GetDisplayedColumns() {
     const displayedColumns: string[] = ['fecha', 'nivel', 'comida', 'antesDespues'];
 
     if (this.permitirEliminar) {
